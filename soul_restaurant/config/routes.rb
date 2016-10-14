@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :models
   root 'home#index'
 
   get 'contact_us' => 'home#contact'
