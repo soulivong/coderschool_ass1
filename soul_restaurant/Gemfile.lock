@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (4.2.5.1)
       actionpack (= 4.2.5.1)
@@ -57,6 +57,8 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
+    filterrific (2.0.5)
+      rails (>= 3.1.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -81,7 +83,10 @@ GEM
     nokogiri (1.6.8-x86-mingw32)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    pg (0.19.0-x86-mingw32)
     pkg-config (1.1.7)
+    postgresql (1.0.0)
+      pg
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -155,8 +160,11 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.1.0)
+  filterrific
   jbuilder (~> 2.0)
   jquery-rails
+  pg
+  postgresql
   rails (= 4.2.5.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

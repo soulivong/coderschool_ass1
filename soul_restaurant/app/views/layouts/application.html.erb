@@ -2,26 +2,47 @@
 <html>
 <head>
   <title>SoulRestaurant</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%#= csrf_meta_tags %>
+
+  <!-- official bootstrap -->
+  <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
 </head>
 <body>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="<%= root_path %>">SoulRestaurant</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="<%= 'active' if current_page ? (root_path) %>"><a href="<%= root_path %>">Home</a></li>
-      <li class="<%= 'active' if current_page ? (menu_path) %>"><%= link_to "Menu", menu_path %></li>
-      <li class="<%= 'active' if current_page ? (contact_path) %>"><%= link_to "Contact Us", contact_path %></li>
+      <li class="<%= 'active' if current_page?(root_path) %>"><a href="<%= root_path %>">Home</a>
+      </li>
+      <li class="dropdown <%= 'active' if current_page?(controller: 'home', action: 'menu') %>">
+          <a href="home/menu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-list-alt" area-hidden="true"></span>
+            Menu
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <% @sec = Section.all %>
+            <% @sec.each do |s| %>
+            <li><%= link_to s.name, menu_path(id: s), class: 'btn btn-secondary' %></li>
+            <% end %>
+          </ul>
+      </li>
+      <li class="<%= 'active' if current_page?(controller: 'home', action: 'contact') %>"><%= link_to "Contact Us", controller: "home", action: "contact" %></li>
     </ul>
   </div>
 </nav>
 <div class="container">
 <%= yield %>
 </div>
-
+<!-- official JQuery -->
+<script src="jquery/dist/jquery.min.js"></script>
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+
