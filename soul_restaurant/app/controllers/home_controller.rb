@@ -1,7 +1,15 @@
 class HomeController < ApplicationController
   def index
+
   	@sections = Section.all
   	@items = FoodItem.all	
+
+    if params[:search]
+      @items = FoodItem.search(params[:search]).order("created_at DESC")
+    else
+      @items = FoodItem.all.order('created_at DESC')
+    end
+
   end
 
   def contact
