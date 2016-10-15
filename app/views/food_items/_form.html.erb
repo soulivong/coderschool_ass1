@@ -1,0 +1,39 @@
+<%= form_for(@food_item) do |f| %>
+  <% if @food_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@food_item.errors.count, "error") %> prohibited this food_item from being saved:</h2>
+
+      <ul>
+      <% @food_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :price %><br>
+    <%= f.text_field :price, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :remote_image_url %><br>
+    <%= f.text_field :remote_image_url, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.select :section_id, Section.all.collect {|x| [x.name, x.id]}, {:include_blank => "Select one"}, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add Food", class: "btn btn-primary" %>
+  </div>
+  <br>
+<% end %>
